@@ -55,11 +55,11 @@ def consultar_disponibilidad():
             existe = True
 
             if libros[i]["Disponibilidad"] == True:
-                print(f"El libro '{libros[i]['Titulo']}' está disponible.")
+                print(f"El libro '{libros[i]['Titulo']}' está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible.")
+                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             
@@ -92,7 +92,7 @@ def reserva():
                 input("Presione Enter para continuar... ")
                 print("")
             else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible.")
+                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             
