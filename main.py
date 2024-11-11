@@ -51,15 +51,15 @@ def consultar_disponibilidad():
     opcion_disp = input("¿Qué libro desea consultar? \n")
     existe = False
     for i in libros:
-        if libros[i]["Titulo"].upper() == opcion_disp.upper():
+        if libros[i]['Titulo'].upper() == opcion_disp.upper():
             existe = True
 
-            if libros[i]["Disponibilidad"] == True:
-                print(f"El libro '{libros[i]['Titulo']}' está disponible.")
+            if libros[i]['Disponibilidad'] == True:
+                print(f"El libro '{libros[i]['Titulo']}' está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible.")
+                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             
@@ -79,20 +79,20 @@ def reserva():
     opcion_reserva = input("¿Que libro quieres reservar? \n")
     existe = False
     for i in libros:
-        if libros[i]["Titulo"].upper() == opcion_reserva.upper():
+        if libros[i]['Titulo'].upper() == opcion_reserva.upper():
             existe = True
 
-            if libros[i]["Disponibilidad"] == True:
+            if libros[i]['Disponibilidad'] == True:
                 print(f"El libro '{libros[i]['Titulo']}' está disponible.")
                 print("Reservando libro...")
                 print("")
                 time.sleep(2)
                 libros[i]["Disponibilidad"] = False
-                print(f"Se ha reservado exitosamente el libro '{libros[i]["Titulo"]}'")
+                print(f"Se ha reservado exitosamente el libro '{libros[i]['Titulo']}'")
                 input("Presione Enter para continuar... ")
                 print("")
             else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible.")
+                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
             
@@ -107,7 +107,7 @@ def reserva():
 
 # La función salir() muestra un mensaje de agradecimiento y cierra el programa.
 def salir():
-    print("Gracias por usar nuestro servicio. Saliendo de la Biblioteca...")
+    print("Gracias por usar nuestro servicio.\nSaliendo de la Biblioteca...")
     exit()
 
 # Llamamos a la función menu para que antes de ejecutar el while (opciones a introducir) muestre el menú al usuario
