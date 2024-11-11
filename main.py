@@ -51,10 +51,10 @@ def consultar_disponibilidad():
     opcion_disp = input("¿Qué libro desea consultar? \n")
     existe = False
     for i in libros:
-        if libros[i]["Titulo"].upper() == opcion_disp.upper():
+        if libros[i]['Titulo'].upper() == opcion_disp.upper():
             existe = True
 
-            if libros[i]["Disponibilidad"] == True:
+            if libros[i]['Disponibilidad'] == True:
                 print(f"El libro '{libros[i]['Titulo']}' está disponible para reservar.")
                 input("Presione Enter para continuar... ")
                 print("")
@@ -79,10 +79,10 @@ def reserva():
     opcion_reserva = input("¿Que libro quieres reservar? \n")
     existe = False
     for i in libros:
-        if libros[i]["Titulo"].upper() == opcion_reserva.upper():
+        if libros[i]['Titulo'].upper() == opcion_reserva.upper():
             existe = True
 
-            if libros[i]["Disponibilidad"] == True:
+            if libros[i]['Disponibilidad'] == True:
                 print(f"El libro '{libros[i]['Titulo']}' está disponible.")
                 print("Reservando libro...")
                 print("")
