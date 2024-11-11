@@ -88,7 +88,7 @@ def reserva():
                 print("")
                 time.sleep(2)
                 libros[i]["Disponibilidad"] = False
-                print(f"Se ha reservado exitosamente el libro '{libros[i]["Titulo"]}'")
+                print(f"Se ha reservado exitosamente el libro '{libros[i]['Titulo']}'")
                 input("Presione Enter para continuar... ")
                 print("")
             else:
