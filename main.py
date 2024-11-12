@@ -56,22 +56,27 @@ def comprueba_libro(titulo):
 # La función consultar_disponibilidad() muestra por pantalla el titulo y autor del libro que el usuario quiere consultar, también verifica si 
 # este libro existe mediante el true y false.
 def consultar_disponibilidad():
-    opcion_disp = input("¿Qué libro desea consultar? \n")
+    opcion_disp = input("¿Qué libro desea consultar? \n").upper()
     indice_libro = comprueba_libro(opcion_disp)
     if indice_libro != False:
         if libros[indice_libro]['Disponibilidad'] == True:
             print(f"El libro '{libros[indice_libro]['Titulo']}' está disponible para reservar.")
+            input("Presione Enter para continuar... ")
         else:
             print(f"El libro '{libros[indice_libro]['Titulo']}' no está disponible para reservar.")
+            input("Presione Enter para continuar... ")
     else:
         print("Ese libro no se encuentra en el catálogo. Inténtelo de nuevo.")
-    input("Presione Enter para continuar... ")
+        input("Presione Enter para continuar... ")
+        print("")
+        consultar_disponibilidad()
+
     print("")
 
 # La función reserva() muestra por pantalla el titulo y autor del libro que el usuario quiere reservar, también verifica si este está
 # disponible mediante el true y false.
 def reserva():
-    opcion_reserva = input("¿Qué libro quieres reservar? \n")
+    opcion_reserva = input("¿Qué libro quieres reservar? \n").upper()
     indice_libro = comprueba_libro(opcion_reserva)
     if indice_libro != False:   
         if libros[indice_libro]['Disponibilidad'] == True:
@@ -80,11 +85,15 @@ def reserva():
             time.sleep(2)
             libros[indice_libro]["Disponibilidad"] = False
             print(f"Se ha reservado exitosamente el libro '{libros[indice_libro]['Titulo']}'")
+            input("Presione Enter para continuar... ")
         else:
             print(f"El libro '{libros[indice_libro]['Titulo']}' no está disponible para reservar.")
+            input("Presione Enter para continuar... ")
     else:
         print("Ese libro no se encuentra en el catálogo. Inténtelo de nuevo.")
-    input("Presione Enter para continuar... ")
+        input("Presione Enter para continuar... ")
+        print("")
+        reserva()
     print("")
 
 # La función salir() muestra un mensaje de agradecimiento y cierra el programa.
