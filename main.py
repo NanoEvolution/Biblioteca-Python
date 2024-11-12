@@ -1,6 +1,7 @@
-import time # Se utiliza el import time para utilizar time.sleep() para darle mas realismo a la bilbioteca
+import time  # Se utiliza el import time para utilizar time.sleep() para darle mas realismo a la bilbioteca
 
-# Se definen estaticamente los libros y un diccionario libros para guardar estos ahí, ya que facilitará el acceso a ellos.
+# Se definen estaticamente los libros y un diccionario libros para guardar estos ahí, 
+# ya que facilitará el acceso a ellos.
 Solo_Leveling = {
     "Titulo": "Solo Leveling",
     "Autor": "Chu-Gong",
@@ -33,76 +34,57 @@ def menu():
     print("(R) Reservar un libro")
     print("(S) Salir - Salir del programa")
     print("=============================================================")
-    print()
+    print("")
 
 # La función ver_catalogo() contiene un for que recorre el diccionario libros y muestra por pantalla el titulo y autor de cada libro
 def ver_catalogo():
-    for i in libros:
+    for i, libro in libros.items():
         print("————————————————————————————————————————————————————————")
-        print(f"Libro {i}: {libros[i]['Titulo']} | Autor: {libros[i]['Autor']}")
+        print(f"Libro {i}: {libro['Titulo']} | Autor: {libro['Autor']}")
         print("————————————————————————————————————————————————————————")
     print("")
     input("Presione Enter para continuar... ")
     print("")
 
+# Función que comprueba si un libro está en el catálogo, devuelve el índice si lo encuentra y si no, devuelve False.
+def comprueba_libro(titulo):
+    for i in libros:
+        if libros[i]['Titulo'].upper() == titulo.upper():
+            return i
+    return False
+
 # La función consultar_disponibilidad() muestra por pantalla el titulo y autor del libro que el usuario quiere consultar, también verifica si 
 # este libro existe mediante el true y false.
 def consultar_disponibilidad():
     opcion_disp = input("¿Qué libro desea consultar? \n")
-    existe = False
-    for i in libros:
-        if libros[i]['Titulo'].upper() == opcion_disp.upper():
-            existe = True
-
-            if libros[i]['Disponibilidad'] == True:
-                print(f"El libro '{libros[i]['Titulo']}' está disponible para reservar.")
-                input("Presione Enter para continuar... ")
-                print("")
-            else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
-                input("Presione Enter para continuar... ")
-                print("")
-            
-            break
-    if existe == False:
-        print("Ese libro no se encuentra en el catálogo.")
-        print("Inténtelo de nuevo.")
-        input("Presione Enter para continuar... ")
-        print("")
-        reserva()
+    indice_libro = comprueba_libro(opcion_disp)
+    if indice_libro != False:
+        if libros[indice_libro]['Disponibilidad'] == True:
+            print(f"El libro '{libros[indice_libro]['Titulo']}' está disponible para reservar.")
+        else:
+            print(f"El libro '{libros[indice_libro]['Titulo']}' no está disponible para reservar.")
+    else:
+        print("Ese libro no se encuentra en el catálogo. Inténtelo de nuevo.")
+    input("Presione Enter para continuar... ")
     print("")
 
 # La función reserva() muestra por pantalla el titulo y autor del libro que el usuario quiere reservar, también verifica si este está
 # disponible mediante el true y false.
 def reserva():
-    print("")
-    opcion_reserva = input("¿Que libro quieres reservar? \n")
-    existe = False
-    for i in libros:
-        if libros[i]['Titulo'].upper() == opcion_reserva.upper():
-            existe = True
-
-            if libros[i]['Disponibilidad'] == True:
-                print(f"El libro '{libros[i]['Titulo']}' está disponible.")
-                print("Reservando libro...")
-                print("")
-                time.sleep(2)
-                libros[i]["Disponibilidad"] = False
-                print(f"Se ha reservado exitosamente el libro '{libros[i]['Titulo']}'")
-                input("Presione Enter para continuar... ")
-                print("")
-            else:
-                print(f"El libro '{libros[i]['Titulo']}' no está disponible para reservar.")
-                input("Presione Enter para continuar... ")
-                print("")
-            
-            break
-    if existe == False:
-        print("Ese libro no se encuentra en el catálogo.")
-        print("Inténtelo de nuevo.")
-        input("Presione Enter para continuar... ")
-        print("")
-        reserva()
+    opcion_reserva = input("¿Qué libro quieres reservar? \n")
+    indice_libro = comprueba_libro(opcion_reserva)
+    if indice_libro != False:   
+        if libros[indice_libro]['Disponibilidad'] == True:
+            print(f"El libro '{libros[indice_libro]['Titulo']}' está disponible.")
+            print("Reservando libro...")
+            time.sleep(2)
+            libros[indice_libro]["Disponibilidad"] = False
+            print(f"Se ha reservado exitosamente el libro '{libros[indice_libro]['Titulo']}'")
+        else:
+            print(f"El libro '{libros[indice_libro]['Titulo']}' no está disponible para reservar.")
+    else:
+        print("Ese libro no se encuentra en el catálogo. Inténtelo de nuevo.")
+    input("Presione Enter para continuar... ")
     print("")
 
 # La función salir() muestra un mensaje de agradecimiento y cierra el programa.
@@ -126,7 +108,7 @@ while True:
         reserva()
         menu()
     elif opcion == "S":
-         salir()
+        salir()
     else:
         print("Opción no válida, intente de nuevo")
         menu()
