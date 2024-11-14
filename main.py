@@ -1,4 +1,5 @@
 import time  # Se utiliza el import time para utilizar time.sleep() para darle mas realismo a la bilbioteca
+import os # Importamos el módulo os para realizar el clear de la terminal en una función más adelante
 
 # Se definen estaticamente los libros y un diccionario libros para guardar estos ahí, 
 # ya que facilitará el acceso a ellos.
@@ -101,6 +102,15 @@ def salir():
     print("Gracias por usar nuestro servicio.\nSaliendo de la Biblioteca...")
     exit()
 
+# Función que limpia la terminal del usuario para hacerla más visible
+def limpiar():
+    if os.name == 'nt':  # Windows
+        os.system('cls')
+    else:  # Linux y Mac
+        os.system('clear')
+
+limpiar() # Limpiamos la terminal cuando se ejecute el codigo
+
 # Llamamos a la función menu para que antes de ejecutar el while (opciones a introducir) muestre el menú al usuario
 menu()
 
@@ -109,15 +119,19 @@ while True:
     opcion = input("¿Qué acción desea realizar?: ").upper()
     if opcion == "V":
         ver_catalogo()
+        limpiar()
         menu()
     elif opcion == "C":
         consultar_disponibilidad()
+        limpiar()
         menu()
     elif opcion == "R":
         reserva()
+        limpiar()
         menu()
     elif opcion == "S":
         salir()
     else:
         print("Opción no válida, intente de nuevo")
+        limpiar()
         menu()
