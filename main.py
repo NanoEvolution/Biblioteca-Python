@@ -50,14 +50,14 @@ def ver_catalogo():
 # Función que comprueba si un libro está en el catálogo, devuelve el índice si lo encuentra y si no, devuelve False.
 def comprueba_libro(titulo):
     for i in libros:
-        if libros[i]['Titulo'].upper() == titulo.upper():
+        if libros[i]['Titulo'].strip().upper() == titulo.upper():
             return i
     return False
 
 # La función consultar_disponibilidad() muestra por pantalla el titulo y autor del libro que el usuario quiere consultar, también verifica si 
 # este libro existe mediante el true y false.
 def consultar_disponibilidad():
-    opcion_disp = input("¿Qué libro desea consultar? \n").upper()
+    opcion_disp = input("¿Qué libro desea consultar? \n").strip().upper()
     indice_libro = comprueba_libro(opcion_disp)
     if indice_libro != False:
         if libros[indice_libro]['Disponibilidad'] == True:
@@ -77,7 +77,7 @@ def consultar_disponibilidad():
 # La función reserva() muestra por pantalla el titulo y autor del libro que el usuario quiere reservar, también verifica si este está
 # disponible mediante el true y false.
 def reserva():
-    opcion_reserva = input("¿Qué libro quieres reservar? \n").upper()
+    opcion_reserva = input("¿Qué libro quieres reservar? \n").strip().upper()
     indice_libro = comprueba_libro(opcion_reserva)
     if indice_libro != False:   
         if libros[indice_libro]['Disponibilidad'] == True:
@@ -116,7 +116,7 @@ menu()
 
 # Bucle while que pregunta al usuario que opción quiere usar y ejecuta la función correspondiente según la opción que elija
 while True:
-    opcion = input("¿Qué acción desea realizar?: ").upper()
+    opcion = input("¿Qué acción desea realizar?: ").strip().upper()
     if opcion == "V":
         ver_catalogo()
         limpiar()
