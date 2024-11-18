@@ -50,7 +50,7 @@ def ver_catalogo():
 # Función que comprueba si un libro está en el catálogo, devuelve el índice si lo encuentra y si no, devuelve False.
 def comprueba_libro(titulo):
     for i in libros:
-        if libros[i]['Titulo'].strip().upper() == titulo.upper():
+        if libros[i]['Titulo'].strip().upper() == titulo.strip().upper():
             return i
     return False
 
